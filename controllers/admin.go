@@ -47,18 +47,9 @@ func ReplyTicket(c *fiber.Ctx) error {
 			"error": "could not update the response",
 		})
 	}
-	// notifications := models.Notifications{
-	// 	Role:     "user",
-	// 	Title:    "Reply from admin",
-	// 	Status:   "resolved",
-	// 	Message:  ticket.Response,
-	// 	TicketID: ticket.ID,
-	// }
-	// config.DB.Save(&notifications)
-
+	
 	return c.JSON(fiber.Map{
 		"message": "message from admin",
-		// "notification": notifications,
 		"ticket": ticket,
 	})
 }
