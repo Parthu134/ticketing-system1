@@ -37,7 +37,7 @@ func Login(c *fiber.Ctx) error {
 	}
 	credentials.Email = strings.TrimSpace(strings.ToLower(credentials.Email))
 	credentials.Password = strings.TrimSpace(credentials.Password)
-	otp := fmt.Sprintf("%06d", rand.Intn(100000))
+	otp := fmt.Sprintf("%5d", rand.Intn(10000))
 	expiry := time.Now().Add(5 * time.Minute)
 	user.OTP = otp
 	user.OTPExpiry = expiry
@@ -46,7 +46,7 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{
 			"error": "failed to send otp",
 		})
-	}
+	} 
 	return c.JSON(fiber.Map{
 		"message": "OTP sent to your mail",
 	})

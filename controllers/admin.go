@@ -15,7 +15,7 @@ func ListTicketsAdmins(c *fiber.Ctx) error {
 		})
 	}
 	var tickets []models.Ticket
-	if err := config.DB.Preload("Tags").Find(&tickets).Error; err != nil {
+	if err := config.DB.Preload("Tags").Order("created_at desc").Find(&tickets).Error; err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":   "failed to fetch details",
 			"details": err.Error(),
@@ -47,16 +47,18 @@ func ReplyTicket(c *fiber.Ctx) error {
 			"error": "could not update the response",
 		})
 	}
-	notifications := models.Notifications{
-		Role:     "user",
-		Title:    "Reply from admin",
-		Status:   "resolved",
-		Message:  ticket.Response,
-		TicketID: ticket.ID,
-	}
-	config.DB.Save(&notifications)
+	// notifications := models.Notifications{
+	// 	Role:     "user",
+	// 	Title:    "Reply from admin",
+	// 	Status:   "resolved",
+	// 	Message:  ticket.Response,
+	// 	TicketID: ticket.ID,
+	// }
+	// config.DB.Save(&notifications)
+
 	return c.JSON(fiber.Map{
-		"message":      "message from admin",
-		"notification": notifications,
+		"message": "message from admin",
+		// "notification": notifications,
+		"ticket": ticket,
 	})
 }

@@ -17,8 +17,7 @@ func UpdateTicketStatus(c *fiber.Ctx) error {
 		})
 	}
 	var body struct {
-		Status   string `json:"status"`
-		Feedback string `json:"feedback"`
+		Status string `json:"status"`
 	}
 	if err := c.BodyParser(&body); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
