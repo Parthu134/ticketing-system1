@@ -6,6 +6,7 @@ import (
 
 	"ticketing-system/models"
 
+	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -13,9 +14,11 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() {
+	_ = godotenv.Load()
+
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
-		dsn = "host=localhost user=postgres password=Parthu732 dbname=ticketing port=5432 sslmode=disable"
+		log.Fatal("DATABASE_URL not set in environment")
 	}
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
