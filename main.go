@@ -30,5 +30,5 @@ func main() {
 		port="2500"
 	}
 	log.Printf("Server running on port %s",port)
-	app.Listen("0.0.0.0"+port)
+	app.Listen("0.0.0.0:"+port)
 }
