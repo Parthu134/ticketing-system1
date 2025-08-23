@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+	"os"
 	"ticketing-system/config"
 	"ticketing-system/routes"
 	"ticketing-system/services"
@@ -23,5 +25,10 @@ func main() {
 		}
 	}()
 	c.Start()
-	app.Listen(":2500")
+	port:=os.Getenv("PORT")
+	if port==""{
+		port="2500"
+	}
+	log.Printf("Server running on port %s",port)
+	app.Listen("0.0.0.0"+port)
 }
