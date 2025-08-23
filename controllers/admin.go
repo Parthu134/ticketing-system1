@@ -50,5 +50,6 @@ func ReplyTicket(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
 		"message": "message from admin",
 		"ticket":  ticket,
+
 	})
 }
