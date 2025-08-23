@@ -48,5 +48,5 @@ func SendNotificationsToAdmin(title, body string) {
 			defer res.Body.Close()
 		}
 	}
-	log.Fatal("Push notifications sent successfully to all admin subscriptions.")
+	log.Println("Push notifications sent successfully to all admin subscriptions.")
 }

@@ -15,7 +15,7 @@ func Setup(app *fiber.App) {
 	app.Get("/tickets/tag/:tag", controllers.GetTicketsByTag)
 	app.Get("/tickets/all", controllers.ListTicketsAdmins)
 	app.Patch("/tickets/:id", middleware.RequiredAuth, controllers.UpdateTicketStatus)
-	app.Get("/admin/subscription", controllers.SaveSubscription)
+	app.Post("/admin/subscription", controllers.SaveSubscription)
 	app.Put("/tickets/:id/reply", middleware.AdminOnly, controllers.ReplyTicket)
 	app.Delete("/tickets/:id", controllers.DeleteTicket)
 }

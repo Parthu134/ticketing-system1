@@ -37,7 +37,7 @@ func Login(c *fiber.Ctx) error {
 	}
 	credentials.Email = strings.TrimSpace(strings.ToLower(credentials.Email))
 	credentials.Password = strings.TrimSpace(credentials.Password)
-	otp := fmt.Sprintf("%5d", rand.Intn(10000))
+	otp := fmt.Sprintf("%05d", rand.Intn(10000))
 	expiry := time.Now().Add(5 * time.Minute)
 	user.OTP = otp
 	user.OTPExpiry = expiry

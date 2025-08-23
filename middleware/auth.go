@@ -1,13 +1,10 @@
 package middleware
 
 import (
-	// "github.com/gofiber/fiber"
-
 	"strings"
 	"ticketing-system/utils"
 
 	"github.com/gofiber/fiber/v2"
-	// "github.com/golang-jwt/jwt/v5"
 )
 
 func RequiredAuth(c *fiber.Ctx) error {
