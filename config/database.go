@@ -2,6 +2,7 @@ package config
 
 import (
 	"log"
+	"os"
 
 	"ticketing-system/models"
 
@@ -12,7 +13,10 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() {
-	dsn := "host=localhost user=postgres password=Parthu732 dbname=ticketing port=5432 sslmode=disable"
+	dsn := os.Getenv("DATABASE-URL")
+	if dsn == "" {
+		dsn = "host=localhost user=postgres password=Parthu732 dbname=ticketing port=5432 sslmode=disable"
+	}
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("failed to connect database", err)
